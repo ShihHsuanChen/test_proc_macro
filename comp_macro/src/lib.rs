@@ -16,8 +16,8 @@
 //!
 //! ### Grammar:
 //! - comp: mapping for_if_clause+
-//! >>> exmple 1: ... for_if_clause 
-//! >>> exmple 2: ... for_if_clause for_if_clause ...
+//! >>> example 1: ... for_if_clause 
+//! >>> example 2: ... for_if_clause for_if_clause ...
 //!
 //! - mapping: expression
 //!
