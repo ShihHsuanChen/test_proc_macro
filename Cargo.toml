@@ -1,0 +1,7 @@
+[package]
+name = "test_proc_macro"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+comp_macro = { path = "comp_macro" }
