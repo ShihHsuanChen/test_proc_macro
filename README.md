@@ -24,27 +24,49 @@ Frontend (source)
 ## Grammar
 ```
 comp: mapping for_if_clause+
+mapping: expression
+for_if_clause
+ | 'for' pattern 'in' sequence ('if' expression)*
+pattern: name (,name)*
 ```
->>> example 1: ... for_if_clause 
->>> example 2: ... for_if_clause for_if_clause ...
+
+Notice that I didn't implement the "one or more" `for_if_clause` in this tutorial because it is more complicated.
+
+### The comprehension 
+```
+comp: mapping for_if_clause+
+```
+Examples:
+- ... for_if_clause
+- ... for_if_clause for_if_clause ...
+
+where the `mapping` component is
 
 ```
 mapping: expression
 ```
+Examples:
+- x * 2
+- x + 1
 
+### The `for_if_clause` component
 ```
 for_if_clause
- | 'for' pattern 'in' expression ('if' expression)*
+ | 'for' pattern 'in' sequence ('if' expression)*
 ```
->>> example 1: for ... in ...
->>> example 2: for ... in ... if ...
->>> example 3: for ... in ... if ... if ...
+Examples
+- for ... in ...
+- for ... in ... if ...
+- for ... in ... if ... if ...
+
+where the `pattern` component is 
 
 ```
 pattern: name (,name)*
 ```
->>> example 1: a
->>> example 2: a, b
+Examples:
+- a
+- a, b
 
 ## Rust syntax
 In the case of 
@@ -65,7 +87,7 @@ IntoIterator::into_iter(xs)
 or in general
 
 ```rust
-IntoIterator::into_iter(<expression>)
+IntoIterator::into_iter(<sequence>)
   .flat_map(|<pattern>| {
     (true (&& <expression>)*).then(|| <mapping>)
   })
